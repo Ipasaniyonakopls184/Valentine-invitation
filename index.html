@@ -8,38 +8,34 @@ html, body {
     width: 100%;
     height: 100%;
     margin: 0;
-    overflow: hidden;
     font-family: Arial, sans-serif;
     background-color: #ffe6e6;
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 }
 
-/* Text box above GIF */
-.container {
-    text-align: center;
-    margin-bottom: 20px;
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* center horizontally */
+    gap: 20px; /* space between elements */
+    position: relative; /* for absolute positioning of NO button */
 }
 
 h1 {
     background: rgba(255, 255, 255, 0.85);
     padding: 20px 40px;
     border-radius: 20px;
-    display: inline-block;
     font-size: 2rem;
+    text-align: center;
 }
 
-/* Centered GIF */
 #gif {
     width: 250px;
     height: 250px;
-    margin-bottom: 20px;
-    z-index: 0;
 }
 
-/* Button container below GIF */
 .button-container {
     display: flex;
     justify-content: center;
@@ -52,7 +48,7 @@ button {
     border-radius: 12px;
     border: none;
     cursor: pointer;
-    position: relative; /* default relative */
+    position: relative;
     transition: all 0.2s ease;
 }
 
@@ -69,17 +65,13 @@ button {
 </head>
 <body>
 
-<div class="container">
+<div class="wrapper">
     <h1>Will you be my Valentine? 💖</h1>
-</div>
-
-<!-- GIF -->
-<img id="gif" src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbW5lenZyZHI5OXM2eW95b3pmMG40cWVrMDhtNjVuM3A4dGNxa2g2dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/VM1fcpu2bKs1e2Kdbj/giphy.gif" alt="Valentine GIF">
-
-<!-- Buttons -->
-<div class="button-container">
-    <button id="yesBtn" onclick="yesClicked()">YES 💕</button>
-    <button id="noBtn" onclick="moveNo()">NO 😅</button>
+    <img id="gif" src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbW5lenZyZHI5OXM2eW95b3pmMG40cWVrMDhtNjVuM3A4dGNxa2g2dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/VM1fcpu2bKs1e2Kdbj/giphy.gif" alt="Valentine GIF">
+    <div class="button-container">
+        <button id="yesBtn" onclick="yesClicked()">YES 💕</button>
+        <button id="noBtn" onclick="moveNo()">NO 😅</button>
+    </div>
 </div>
 
 <script>
@@ -89,21 +81,22 @@ function moveNo() {
     const noBtn = document.getElementById("noBtn");
     const yesBtn = document.getElementById("yesBtn");
 
-    // Make NO button absolute for movement
+    // make NO button absolute relative to wrapper
     noBtn.style.position = "absolute";
 
-    // Calculate random position inside viewport
+    // random position within viewport
+    const wrapperRect = document.querySelector('.wrapper').getBoundingClientRect();
     const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
     const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
 
     noBtn.style.left = x + "px";
     noBtn.style.top = y + "px";
 
-    // Scale YES button
+    // scale YES button
     yesScale += 0.3;
     yesBtn.style.transform = "scale(" + yesScale + ")";
 
-    // Full screen YES message
+    // full screen YES message
     if (yesScale > 6) {
         yesBtn.style.left = "0";
         yesBtn.style.top = "0";
