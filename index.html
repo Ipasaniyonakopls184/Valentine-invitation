@@ -1,51 +1,48 @@
-<script>
-// Floating hearts effect
-function createHeart() {
-    const heart = document.createElement('div');
-    heart.textContent = '💖';
-    heart.style.position = 'fixed';
-    heart.style.left = Math.random() * window.innerWidth + 'px';
-    heart.style.top = window.innerHeight + 'px';
-    heart.style.fontSize = Math.random() * 30 + 20 + 'px';
-    heart.style.pointerEvents = 'none';
-    heart.style.zIndex = 9999;
-    heart.style.transition = 'transform 4s linear, opacity 4s linear';
-    document.body.appendChild(heart);
-
-    // Animate upward
-    setTimeout(() => {
-        heart.style.transform = `translateY(-${window.innerHeight + 100}px) rotate(${Math.random() * 360}deg)`;
-        heart.style.opacity = 0;
-    }, 10);
-
-    // Remove after animation
-    setTimeout(() => {
-        heart.remove();
-    }, 4000);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Valentine?</title>
+<style>
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ffe6e6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
-function yesClicked() {
-    // Full screen message
-    document.body.innerHTML = `
-    <div style="
-        width:100%;
-        height:100%;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        font-size:3rem;
-        background:rgba(255,255,255,0.8);
-        text-align:center;
-        position:relative;
-        overflow:hidden;
-    ">
-        YAY! 💘 Happy Valentine’s Day! 💘
-    </div>`;
-
-    // Generate hearts continuously
-    const heartInterval = setInterval(createHeart, 300); // every 0.3s
-
-    // Stop after 10 seconds
-    setTimeout(() => clearInterval(heartInterval), 10000);
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
 }
-</script>
+
+h1 {
+    background: rgba(255, 255, 255, 0.85);
+    padding: 20px 40px;
+    border-radius: 20px;
+    font-size: 2rem;
+    text-align: center;
+}
+
+#gif {
+    width: 250px;
+    height: 250px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 1.5rem;
+    border-
